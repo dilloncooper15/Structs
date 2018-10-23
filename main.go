@@ -24,9 +24,13 @@ func main() {
 		},
 	}
 
+	pPointer := &p
+	pPointer.updateAllDemographics("updatedPointerFirstName", "updatedPointerLastName", "updatedPointerEmail@example.com", 00000)
+
 	p.print()
 	p.updateName("Chris", "Roberts")
 	p.print()
+
 	p.updateContactInfo("croberts@gmail.com", 11111)
 	p.print()
 	p.updateAllDemographics("updatedFirstName", "updatedLastName", "updatedEmail@example.com", 99999)
@@ -39,10 +43,10 @@ func main() {
 and [person.zipCode] to [zc].
 */
 func (p *person) updateAllDemographics(fn string, ln string, e string, zc int) {
-	p.firstName = fn
-	p.lastName = ln
-	p.email = e
-	p.zipCode = zc
+	(*p).firstName = fn
+	(*p).lastName = ln
+	(*p).email = e
+	(*p).zipCode = zc
 }
 
 /*
@@ -50,8 +54,8 @@ func (p *person) updateAllDemographics(fn string, ln string, e string, zc int) {
 [person.firstName] to [fn] and the value for [person.lastName] to [ln].
 */
 func (p *person) updateName(fn string, ln string) {
-	p.firstName = fn
-	p.lastName = ln
+	(*p).firstName = fn
+	(*p).lastName = ln
 }
 
 /*
@@ -59,7 +63,7 @@ func (p *person) updateName(fn string, ln string) {
 [person.firstName] to [fn].
 */
 func (p *person) updateFirstName(fn string) {
-	p.firstName = fn
+	(*p).firstName = fn
 }
 
 /*
@@ -67,7 +71,7 @@ func (p *person) updateFirstName(fn string) {
 [person.firstName] to [fn].
 */
 func (p *person) updateLastName(ln string) {
-	p.lastName = ln
+	(*p).lastName = ln
 }
 
 /*
@@ -75,8 +79,8 @@ func (p *person) updateLastName(ln string) {
 of [contactInfo.email] to [e] and the value of [contactInfo.zipCode] to [zc].
 */
 func (c *contactInfo) updateContactInfo(e string, zc int) {
-	c.email = e
-	c.zipCode = zc
+	(*c).email = e
+	(*c).zipCode = zc
 }
 
 /*
@@ -84,7 +88,7 @@ func (c *contactInfo) updateContactInfo(e string, zc int) {
 of [contactInfo.email] to [e].
 */
 func (c *contactInfo) updateContactEmail(e string) {
-	c.email = e
+	(*c).email = e
 }
 
 /*
@@ -92,7 +96,7 @@ func (c *contactInfo) updateContactEmail(e string) {
 of [contactInfo.zipCode] to [zc].
 */
 func (c *contactInfo) updateContactZipCode(zc int) {
-	c.zipCode = zc
+	(*c).zipCode = zc
 }
 
 /*
